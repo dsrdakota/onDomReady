@@ -8,9 +8,9 @@
  *		alert('DOM is ready!');
  *	};
 */
-var debugBuild = false; //Set to true if you want to see debug messages in the Console, or false if not.
+	var debugBuild = false; //Set to true if you want to see debug messages in the Console, or false if not.
 
-if(document.ondomready == undefined) {
+	if(document.ondomready == undefined) {
 		document.ondomready = {};
 		document.ondomready = null;
 	} else {
@@ -25,11 +25,14 @@ if(document.ondomready == undefined) {
 			oldonload.call();
 		}
 	};
-	document.addEventListener("DOMContentLoaded", function onDom(evt) {
+	document.addEventListener("DOMContentLoaded", function onDom(event) {
 		var olddomready = document.ondomready;
 		if(document.ondomready !== null) {
 			if(isLaunched == 0) {
-				olddomready.call(evt);
+				var evt = document.createEvent('Event');
+				evt.initEvent('onDomReady', true, false);  
+				document.dispatchEvent(evt);
+				olddomready.call(this, evt);
 				isLaunched == 1;
 				if(console && debugBuild != false) {
 					console.log('Event onDomReady has been called by DomContentLoaded.');
