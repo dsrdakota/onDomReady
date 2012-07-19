@@ -1,0 +1,51 @@
+	<html>
+	<head>
+	<title>Test for onDomReady</title>
+	<script type="text/javascript" language="javascript">
+	/*
+	if(document.ondomready == undefined) {
+		document.ondomready = {};
+		document.ondomready = null;
+	} else {
+		document.ondomready=document.ondomready;
+	}
+	
+	var oldonload=document.onload;
+	var isLaunched = 0;
+	
+	document.onload = function() {	
+		if(oldonload !== null) {
+			oldonload.call();
+		}
+	};
+	document.addEventListener("DOMContentLoaded", function onDom(event) {
+		var olddomready = document.ondomready;
+		if(olddomready !== null) {
+			if(isLaunched == 0) {
+				olddomready.call(this, event);
+				isLaunched == 1;
+				//We now launched the mapped DOMContentLoaded Event
+			} else {
+				//We already launched DOMContentLoaded Event
+			}
+		}
+	}, false);
+	*/
+	var eee;
+	document.ondomready=function(event) {
+		eee = event;
+		alert('Typeof event: ' + typeof(event));
+		alert(event.type);
+		alert('Event onDomReady has been fired.');
+	};
+	function doStuff() {
+		var e = document.createElement("div");
+		e.innerText = 'Hello World!\n';
+		document.body.appendChild(e);
+	}
+	</script>
+	<script type="text/javascript" language="javascript" src="onDomReady.js"></script>
+	</head>
+	<body onload="doStuff();">
+	</body>
+	</html>
