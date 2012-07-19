@@ -33,7 +33,7 @@
 				evt.initEvent('onDomReady', true, false);  
 				document.dispatchEvent(evt);
 				olddomready.call(this, evt);
-				isLaunched == 1;
+				isLaunched = 1;
 				if(console && debugBuild != false) {
 					console.log('Event onDomReady has been called by DomContentLoaded.');
 				}
